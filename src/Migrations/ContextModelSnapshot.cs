@@ -57,9 +57,10 @@ namespace app1.Migrations
 
             modelBuilder.Entity("app1.TeamMember", b =>
                 {
-                    b.HasOne("app1.Team", null)
+                    b.HasOne("app1.Team", "Team")
                         .WithMany("Members")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

@@ -21,6 +21,14 @@ namespace app1
             base.OnConfiguring(optionsBuilder);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Team>()
+                        .HasMany(x => x.Members)
+                        .WithOne(x => x.Team)
+                        .OnDelete(DeleteBehavior.SetNull);
+        }
+
         public DbSet<Team> Teams { get; set; }
 
         public DbSet<TeamMember> TeamMembers { get; set; }

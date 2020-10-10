@@ -23,5 +23,7 @@ namespace app1
         public string LastName { get; set; }
 
         public RolaEnum Rola { get; set; }
+
+        public virtual Team Team { get; set; }
     }
 }

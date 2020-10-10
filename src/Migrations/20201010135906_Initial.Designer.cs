@@ -9,7 +9,7 @@ using app1;
 namespace app1.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20201010133055_Initial")]
+    [Migration("20201010135906_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,9 +59,10 @@ namespace app1.Migrations
 
             modelBuilder.Entity("app1.TeamMember", b =>
                 {
-                    b.HasOne("app1.Team", null)
+                    b.HasOne("app1.Team", "Team")
                         .WithMany("Members")
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

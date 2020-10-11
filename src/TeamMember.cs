@@ -16,7 +16,7 @@ namespace app1
             Rola = rola;
         }
 
-        public Guid Id { get; set; }
+        public Guid Id { get; private set; }
 
         public string FirstName { get; set; }
 

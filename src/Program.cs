@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace app1
@@ -53,13 +54,16 @@ namespace app1
         {
             using (var ctx = new Context())
             {
-                var teams = await ctx.Teams.Include(x => x.Members).ToListAsync();
+                var teams = await ctx.Teams.Include(x => x.Members).Where(x => x.Members.Count > 0).ToListAsync();
 
-                var randomTeam = teams[Randomness.Random.Next(teams.Count)];
+                if (teams.Count > 0)
+                {
+                    var randomTeam = teams[Randomness.Random.Next(teams.Count)];
 
-                randomTeam.Members.RemoveAt(0);
+                    randomTeam.Members.RemoveAt(0);
 
-                await ctx.SaveChangesAsync();
+                    await ctx.SaveChangesAsync();
+                }
             }
         }
 
